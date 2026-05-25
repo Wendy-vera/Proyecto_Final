@@ -1,0 +1,342 @@
+@import "styles.css";
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--gris);
+    color: var(--oscuro);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 32px;
+}
+
+header .logo {
+    font-family: 'Suez One', serif;
+    color: var(--blanco);
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+}
+
+header nav {
+    display: flex;
+    gap: 24px;
+}
+
+header nav a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+header nav a:hover { opacity: 0.75; }
+
+header .btn-header {
+    background-color: var(--naranja);
+    color: var(--blanco);
+    padding: 7px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+header .btn-header:hover { opacity: 0.85; }
+
+.page-header {
+    background-color: var(--gris);
+    padding: 10px 32px;
+    font-size: 0.85rem;
+    color: var(--oscuro);
+    border-bottom: 1px solid #bfc5d9;
+}
+
+.alert {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 32px;
+    flex: 1;
+}
+
+.top-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* ── PANEL FORMULARIO (caja blanca) ── */
+.panel-form {
+    background-color: var(--blanco);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.panel-form-header {
+    background-color: var(--azul);
+    color: var(--blanco);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 12px 20px;
+    font-family: 'Suez One', serif;
+}
+
+.panel-form-body {
+    padding: 0 0 4px 0;
+}
+
+/* ── PANEL LISTA (sin caja) ── */
+.panel-lista {
+    flex: 1;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+}
+
+.form-title {
+    color: var(--naranja);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding: 16px 20px 8px;
+    font-family: 'Suez One', serif;
+}
+
+.form-grid {
+    display: flex;
+    gap: 16px;
+    padding: 0 20px;
+}
+
+.form-fields {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.form-group label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--azul);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    border: 1px solid #c0c6d9;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 0.82rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f9;
+    color: var(--oscuro);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--azul);
+    background-color: #fff;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 64px;
+}
+
+.image-area {
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding-top: 4px;
+}
+
+.image-preview-label {
+    font-size: 0.72rem;
+    color: var(--naranja);
+    font-weight: 600;
+    text-align: center;
+}
+
+.image-preview {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #c0c6d9;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f2f9;
+    overflow: hidden;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-placeholder-text {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    padding: 16px 20px 20px;
+}
+
+.search-row {
+    display: flex;
+    gap: 10px;
+    padding: 0 0 12px 0;
+    align-items: center;
+}
+
+.search-input {
+    flex: 1;
+    border: 1px solid #c0c6d9;
+    border-radius: 4px;
+    padding: 7px 10px;
+    font-size: 0.82rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f9;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: var(--azul);
+    background-color: #fff;
+}
+
+.products-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--azul);
+    margin: 0;
+}
+
+#listaProductos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.empty-state {
+    font-size: 0.82rem;
+    color: #999;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.product-card {
+    display: flex;
+    gap: 12px;
+    background-color: var(--blanco);
+    border-radius: 8px;
+    padding: 10px;
+    align-items: flex-start;
+    border: 1px solid #e0e3ef;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+.product-thumb {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+    border: 1px solid #ddd;
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.product-name {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--oscuro);
+}
+
+.product-desc {
+    font-size: 0.78rem;
+    color: #666;
+}
+
+.product-meta {
+    font-size: 0.75rem;
+    color: var(--azul);
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    letter-spacing: 0.3px;
+}
+
+.btn:hover { opacity: 0.85; }
+
+.btn-buscar  { background-color: var(--oscuro);   color: var(--blanco); }
+.btn-enviar  { background-color: var(--turquesa); color: var(--oscuro); }
+.btn-cancelar{ background-color: var(--naranja);  color: var(--blanco); }
+.btn-crear   { background-color: var(--azul);     color: var(--blanco); }
+.btn-editar  { background-color: var(--turquesa); color: var(--oscuro); }
+.btn-eliminar{ background-color: var(--naranja);  color: var(--blanco); }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro | NIRAMI</title>
+    <link rel="stylesheet" href="/nirami_proyecto/assets/css/registro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<section class="registro-box">
+    <div class="auth-avatar">
+        <i class="fa-solid fa-user"></i>
+    </div>
+
+    <form action="/nirami_proyecto/login" method="get">
+        <div class="input-group">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" placeholder="Nombre completo" required>
+        </div>
+        <div class="input-group">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" placeholder="Correo electrónico" required>
+        </div>
+        <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" placeholder="Contraseña" required>
+        </div>
+        <div class="input-group">
+            <i class="fa-solid fa-shield-halved"></i>
+            <input type="password" placeholder="Confirmar contraseña" required>
+        </div>
+        <button type="submit" class="btn-primary">Registrarse</button>
+        <p class="login-link">
+            ¿Ya tienes cuenta? <a href="/nirami_proyecto/login">Iniciar sesión</a>
+        </p>
+    </form>
+</section>
+
+</body>
+</html>

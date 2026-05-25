@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Producto | NIRAMI</title>
+    <link rel="stylesheet" href="/nirami_proyecto/assets/css/producto.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+<section class="contenedor-producto">
+    <div class="card">
+        <button class="btn-close"><i class="fa-solid fa-x"></i></button>
+        <img src="/nirami_proyecto/assets/imagenes/imgproductos/image 138.png" alt="Producto" class="card-img">
+        <div class="card-body">
+            <h2>Nombre del producto</h2>
+            <p class="descripcion">Descripcion del producto.</p>
+            <div class="precio-container">
+                <h3>$50.000</h3>
+            </div>
+            <div class="acciones">
+                <a href="/nirami_proyecto/carrito" class="btn-primary">Comprar</a>
+                <a href="/nirami_proyecto/categorias" class="btn-secondary">Añadir al carrito</a>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

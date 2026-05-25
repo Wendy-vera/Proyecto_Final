@@ -1,0 +1,7 @@
+com\nirami\dao\CategoriaDAO.class
+database_nirami\ClassConexion.class
+com\nirami\dao\ProductoDAO.class
+com\nirami\servlet\FrontController.class
+com\nirami\model\Producto.class
+com\nirami\model\Categoria.class
+com\nirami\utils\IUUtils.class

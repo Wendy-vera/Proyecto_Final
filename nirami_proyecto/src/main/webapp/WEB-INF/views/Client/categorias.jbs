@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorías | NIRAMI</title>
+    <link rel="stylesheet" href="/nirami_proyecto/assets/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1 class="logo">NIRAMI</h1>
+    <nav>
+        <a href="/nirami_proyecto/index">Inicio</a>
+        <a href="/nirami_proyecto/categorias">Categorías</a>
+        <a href="/nirami_proyecto/carrito">Compras</a>
+        <a href="/nirami_proyecto/favoritos">Favoritos</a>
+        <a href="/nirami_proyecto/perfil">Perfil</a>
+    </nav>
+    <a href="/nirami_proyecto/login" class="btn-header">Cerrar sesión</a>
+</header>
+<main>
+    <section class="seccion">
+        <h2>Categorías</h2>
+        <div class="cards">
+            <a href="/nirami_proyecto/producto" class="card">Cerámica</a>
+            <a href="/nirami_proyecto/producto" class="card">Madera</a>
+            <a href="/nirami_proyecto/producto" class="card">Tejidos</a>
+            <a href="/nirami_proyecto/producto" class="card">Decoración</a>
+        </div>
+    </section>
+</main>
+</body>
+</html>
