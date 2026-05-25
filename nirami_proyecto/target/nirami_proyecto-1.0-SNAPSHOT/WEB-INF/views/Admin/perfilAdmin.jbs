@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Perfil | Admin NIRAMI</title>
+    <link rel="stylesheet" th:href="@{/assets/css/perfil.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/admin.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header th:replace="~{fragments/headerAdmin :: header-admin-nirami}"></header>
+
+<main class="contenedor-principal">
+
+    <div th:if="${mensajeExito}" style="background:#d4edda;color:#155724;border:1px solid #c3e6cb;padding:12px 20px;border-radius:6px;margin-bottom:15px;max-width:500px;width:100%;" th:text="${mensajeExito}"></div>
+    <div th:if="${mensajeError}" style="background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;padding:12px 20px;border-radius:6px;margin-bottom:15px;max-width:500px;width:100%;" th:text="${mensajeError}"></div>
+
+    <div class="card" id="vistaInfo">
+        <div class="card-banner" style="background-color:#303242;"></div>
+        <div class="card-header">
+            <img th:src="@{/assets/imagenes/imgPerfil/Avatar.png}" alt="Avatar" class="avatar">
+        </div>
+        <div class="card-body">
+            <h2 class="card-titulo">Mi Perfil</h2>
+            <span style="display:inline-block;background:#303242;color:var(--turquesa);padding:4px 14px;border-radius:20px;font-size:.78rem;font-weight:600;margin-bottom:20px;">
+                <i class="fa-solid fa-shield-halved"></i> Administrador
+            </span>
+            <div class="info-usuario">
+                <div class="dato">
+                    <span class="etiqueta">Nombre de usuario</span>
+                    <p class="valor" th:text="${usuario != null ? usuario.nombreUsuario : sessionNombre}">-</p>
+                </div>
+                <div class="dato">
+                    <span class="etiqueta">Correo Electrónico</span>
+                    <p class="valor" th:text="${usuario != null ? usuario.correo : '-'}">-</p>
+                </div>
+                <div class="dato" th:if="${usuario != null and usuario.telefono != null}">
+                    <span class="etiqueta">Teléfono</span>
+                    <p class="valor" th:text="${usuario.telefono}">-</p>
+                </div>
+            </div>
+            <div class="perfil-acciones">
+                <button onclick="toggleEditar()" class="btn-secondary">Editar Perfil</button>
+                <a th:href="@{/logout}" class="btn-close">Cerrar Sesión</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" id="formEditar" style="display:none;margin-top:20px;max-width:500px;width:100%;">
+        <div class="card-body" style="padding:30px;">
+            <h2 class="card-titulo">Editar perfil</h2>
+            <form th:action="@{/perfil}" method="post">
+                <div style="margin-bottom:15px;">
+                    <label style="font-size:.75rem;color:#F78F1E;font-weight:600;text-transform:uppercase;display:block;margin-bottom:5px;">Nombre de usuario</label>
+                    <input type="text" name="nombreUsuario"
+                           th:value="${usuario != null ? usuario.nombreUsuario : ''}"
+                           style="width:100%;padding:10px;border:2px solid #01ECD5;border-radius:5px;font-family:'Poppins',sans-serif;outline:none;">
+                </div>
+                <div style="margin-bottom:15px;">
+                    <label style="font-size:.75rem;color:#F78F1E;font-weight:600;text-transform:uppercase;display:block;margin-bottom:5px;">Correo electrónico</label>
+                    <input type="email" name="correo"
+                           th:value="${usuario != null ? usuario.correo : ''}"
+                           style="width:100%;padding:10px;border:2px solid #01ECD5;border-radius:5px;font-family:'Poppins',sans-serif;outline:none;">
+                </div>
+                <div style="margin-bottom:25px;">
+                    <label style="font-size:.75rem;color:#F78F1E;font-weight:600;text-transform:uppercase;display:block;margin-bottom:5px;">Teléfono</label>
+                    <input type="tel" name="telefono"
+                           th:value="${usuario != null ? usuario.telefono : ''}"
+                           placeholder="Opcional"
+                           style="width:100%;padding:10px;border:2px solid #01ECD5;border-radius:5px;font-family:'Poppins',sans-serif;outline:none;">
+                </div>
+                <div class="perfil-acciones">
+                    <button type="submit" class="btn-secondary">Guardar cambios</button>
+                    <button type="button" onclick="toggleEditar()" class="btn-close">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script>
+function toggleEditar() {
+    const fi = document.getElementById('formEditar');
+    const vi = document.getElementById('vistaInfo');
+    fi.style.display = fi.style.display === 'none' ? 'block' : 'none';
+    vi.style.display = vi.style.display === 'none' ? 'block' : 'none';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Producto | NIRAMI</title>
+    <link rel="stylesheet" th:href="@{/assets/css/producto.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="card">
+        <a th:href="@{/categorias}" class="btn-close"><i class="fa-solid fa-x"></i></a>
+
+        <div th:if="${producto != null}">
+            <img th:if="${producto.imagenProducto != null}"
+                 th:src="@{'/assets/imagenes/imgproductos/' + ${producto.imagenProducto}}"
+                 th:alt="${producto.nombreProducto}"
+                 class="card-img">
+            <img th:unless="${producto.imagenProducto != null}"
+                 th:src="@{/assets/imagenes/imgPerfil/Avatar.png}"
+                 class="card-img">
+
+            <div class="card-body">
+                <h2 th:text="${producto.nombreProducto}">Nombre del producto</h2>
+                <p class="descripcion" th:text="${producto.descripcionProducto}">Descripción</p>
+
+                <div th:if="${producto.categoria != null}" style="margin-bottom:8px;">
+                    <span style="background:#D5DAEB;color:#4586FF;border-radius:20px;padding:4px 12px;font-size:.78rem;font-weight:600;"
+                          th:text="${producto.categoria.nombreCategoria}"></span>
+                </div>
+
+                <p style="font-size:.85rem;color:#666;margin-bottom:5px;"
+                   th:if="${producto.cantidadProducto > 0}"
+                   th:text="'Stock disponible: ' + ${producto.cantidadProducto}"></p>
+                <p style="font-size:.85rem;color:#c00;margin-bottom:5px;"
+                   th:unless="${producto.cantidadProducto > 0}">Sin stock disponible</p>
+
+                <h3 th:text="'$' + ${#numbers.formatDecimal(producto.precioProducto,1,'COMMA',0,'POINT')}">$0</h3>
+
+                <div class="acciones" th:if="${producto.cantidadProducto > 0}">
+                    <a th:href="@{/carrito}" class="btn-primary">
+                        <i class="fa-solid fa-bag-shopping"></i> Comprar
+                    </a>
+                    <a href="#" class="btn-secondary">
+                        <i class="fa-solid fa-cart-plus"></i> Al carrito
+                    </a>
+                </div>
+                <div th:unless="${producto.cantidadProducto > 0}">
+                    <a th:href="@{/categorias}" class="btn-secondary" style="display:block;text-align:center;">
+                        Ver más productos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div th:unless="${producto != null}" class="card-body">
+            <p style="text-align:center;color:#999;padding:20px;">Producto no encontrado.</p>
+            <a th:href="@{/categorias}" class="btn-secondary" style="display:block;text-align:center;">Volver al catálogo</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

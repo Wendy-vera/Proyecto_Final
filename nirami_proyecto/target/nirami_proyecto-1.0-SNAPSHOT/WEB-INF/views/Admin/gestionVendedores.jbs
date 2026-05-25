@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Vendedores | Admin NIRAMI</title>
+    <link rel="stylesheet" th:href="@{/assets/css/admin.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header th:replace="~{fragments/headerAdmin :: header-admin-nirami}"></header>
+
+<main>
+    <div th:if="${mensajeExito}" class="alert alert-success" th:text="${mensajeExito}"></div>
+    <div th:if="${mensajeError}" class="alert alert-error"   th:text="${mensajeError}"></div>
+
+    <div class="panel">
+        <div class="panel-header">
+            <span>Vendedores registrados (<span th:text="${vendedores != null ? #lists.size(vendedores) : 0}">0</span>)</span>
+        </div>
+        <div class="tabla-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre de usuario</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Fecha registro</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="vend : ${vendedores}">
+                        <td th:text="${vend.idUsuario}"></td>
+                        <td>
+                            <div style="display:flex;align-items:center;gap:10px;">
+                                <div style="width:36px;height:36px;border-radius:50%;background:#fff3cd;display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa-solid fa-store" style="color:var(--naranja);font-size:.9rem;"></i>
+                                </div>
+                                <strong th:text="${vend.nombreUsuario}"></strong>
+                            </div>
+                        </td>
+                        <td th:text="${vend.correo != null ? vend.correo : '—'}"></td>
+                        <td th:text="${vend.telefono != null ? vend.telefono : '—'}"></td>
+                        <td th:text="${vend.fechaRegistro != null ? #temporals.format(vend.fechaRegistro,'dd/MM/yyyy') : '—'}"></td>
+                        <td>
+                            <span th:if="${vend.activo}"   class="badge badge-verde">Activo</span>
+                            <span th:unless="${vend.activo}" class="badge badge-rojo">Bloqueado</span>
+                        </td>
+                        <td>
+                            <form th:action="@{/admin/usuario/estado}" method="post" style="display:inline;">
+                                <input type="hidden" name="idUsuario" th:value="${vend.idUsuario}">
+                                <input type="hidden" name="destino"   value="vendedor">
+                                <input type="hidden" name="activo"    th:value="${!vend.activo}">
+                                <button type="submit"
+                                        th:class="${vend.activo} ? 'btn btn-naranja' : 'btn btn-turquesa'"
+                                        th:text="${vend.activo} ? 'Bloquear' : 'Activar'">
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:if="${vendedores == null or #lists.isEmpty(vendedores)}">
+                        <td colspan="7" style="text-align:center;padding:30px;color:#999;">No hay vendedores registrados.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
+</html>

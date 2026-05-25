@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nirami - Artesanías</title>
+    <link rel="stylesheet" th:href="@{/assets/css/index.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header th:replace="~{fragments/header :: header-nirami}"></header>
+
+<main>
+    <section class="info" style="background:linear-gradient(135deg,#4586FF 0%,#222435 100%);color:white;padding:60px 40px;text-align:center;">
+        <h2 style="font-size:2.2rem;margin-bottom:12px;">Artesanías únicas hechas a mano</h2>
+        <p style="font-size:1.1rem;opacity:.9;margin-bottom:24px;">Descubre piezas artesanales de Colombia con alma y tradición</p>
+        <a th:href="@{/categorias}" class="btn-header" style="font-size:1rem;padding:12px 28px;">Explorar catálogo</a>
+    </section>
+
+    <form th:action="@{/categorias}" method="get" class="buscador">
+        <i class="fa-solid fa-magnifying-glass" style="color:#4586FF;font-size:1.1rem;"></i>
+        <input type="text" name="busqueda" placeholder="Buscar artesanías...">
+        <button class="btn-secondary">Buscar</button>
+    </form>
+
+    <section class="seccion">
+        <div class="titulo">
+            <h3>Categorías</h3>
+            <a th:href="@{/categorias}" class="btn-link" style="color:#4586FF;font-weight:600;text-decoration:none;">Ver todas →</a>
+        </div>
+        <div class="cards">
+            <a th:each="cat : ${categorias}"
+               th:href="@{/categorias(idCategoria=${cat.idCategoria})}"
+               th:text="${cat.nombreCategoria}"
+               class="card"
+               style="text-decoration:none;font-weight:600;font-size:1rem;">
+            </a>
+            <div th:if="${categorias == null or #lists.isEmpty(categorias)}" class="card" style="color:#999;">
+                Sin categorías disponibles
+            </div>
+        </div>
+    </section>
+
+    <section class="seccion" style="background:#fff;margin:0;padding:40px;">
+        <div class="titulo">
+            <h3>Productos recientes</h3>
+            <a th:href="@{/categorias}" class="btn-link" style="color:#4586FF;font-weight:600;text-decoration:none;">Ver más →</a>
+        </div>
+        <div class="cards">
+            <a th:each="prod : ${recientes}"
+               th:href="@{/producto(id=${prod.idProducto})}"
+               class="card"
+               style="text-decoration:none;flex-direction:column;align-items:flex-start;padding:0;overflow:hidden;">
+                <img th:if="${prod.imagenProducto != null}"
+                     th:src="@{'/assets/imagenes/imgproductos/' + ${prod.imagenProducto}}"
+                     th:alt="${prod.nombreProducto}"
+                     style="width:100%;height:180px;object-fit:cover;">
+                <img th:unless="${prod.imagenProducto != null}"
+                     th:src="@{/assets/imagenes/imgPerfil/Avatar.png}"
+                     style="width:100%;height:180px;object-fit:cover;">
+                <div style="padding:15px;">
+                    <strong th:text="${prod.nombreProducto}" style="display:block;margin-bottom:5px;color:#303242;"></strong>
+                    <span style="color:#4586FF;font-weight:700;" th:text="'$' + ${#numbers.formatDecimal(prod.precioProducto,1,'COMMA',0,'POINT')}"></span>
+                </div>
+            </a>
+            <div th:if="${recientes == null or #lists.isEmpty(recientes)}" style="color:#999;padding:20px;">
+                Aún no hay productos disponibles.
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div><h4>NIRAMI</h4><p>Artesanías únicas de Colombia</p></div>
+    <div>
+        <h4>CATEGORÍAS</h4>
+        <p th:each="cat : ${categorias}" th:text="${cat.nombreCategoria}"></p>
+    </div>
+    <div><h4>ENLACES</h4><p>Sobre nosotros</p><p>Ayuda</p></div>
+    <div><h4>CONTACTO</h4><p>correo@nirami.com</p></div>
+</footer>
+</body>
+</html>

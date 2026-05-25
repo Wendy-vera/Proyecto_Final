@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Compras | NIRAMI</title>
+    <link rel="stylesheet" th:href="@{/assets/css/index.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header th:replace="~{fragments/header :: header-nirami}"></header>
+
+<main>
+    <section class="seccion">
+        <h3 style="margin-bottom:20px;">Historial de compras</h3>
+
+        <div th:if="${mensajeExito}" style="background:#d4edda;color:#155724;border:1px solid #c3e6cb;padding:12px 20px;border-radius:6px;margin-bottom:15px;" th:text="${mensajeExito}"></div>
+
+        <div th:if="${compras == null or #lists.isEmpty(compras)}"
+             style="text-align:center;padding:60px;background:white;border-radius:15px;box-shadow:0 4px 10px rgba(0,0,0,.05);">
+            <i class="fa-solid fa-bag-shopping" style="font-size:3rem;color:#D5DAEB;margin-bottom:15px;display:block;"></i>
+            <p style="color:#999;font-size:1.1rem;">Aún no has realizado ninguna compra.</p>
+            
+            <a th:href="@{/categorias}" class="btn-secondary" style="display:inline-block;margin-top:20px;text-decoration:none;">Explorar productos</a>
+        </div>
+
+        <div th:each="venta : ${compras}" class="card" style="margin-bottom:15px;padding:20px;text-align:left;display:block;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+                <div>
+                    <strong>Pedido #<span th:text="${venta.idVenta}"></span></strong>
+                    <p style="font-size:.85rem;color:#666;" th:text="${venta.fechaVenta}"></p>
+                </div>
+                <div style="text-align:right;">
+                    <span th:text="'Total: $' + ${#numbers.formatDecimal(venta.total,1,'COMMA',0,'POINT')}"
+                          style="font-weight:700;color:#4586FF;font-size:1.1rem;"></span>
+                    <span th:text="${venta.estado}"
+                          th:style="${venta.estado == 'Completada'} ? 'background:#d4edda;color:#155724;' : (${venta.estado == 'Cancelada'} ? 'background:#f8d7da;color:#721c24;' : 'background:#fff3cd;color:#856404;')"
+                          style="display:block;margin-top:5px;padding:3px 10px;border-radius:20px;font-size:.78rem;font-weight:600;"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div><h4>NIRAMI</h4><p>Artesanías únicas</p></div>
+    <div><h4>SOPORTE</h4><p>Ayuda</p><p>Devoluciones</p></div>
+    <div><h4>CONTACTO</h4><p>correo@nirami.com</p></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<header th:fragment="header-nirami" xmlns:th="http://www.thymeleaf.org">
+    <h1 class="logo">NIRAMI</h1>
+    <nav>
+        <a th:href="@{/index}">Inicio</a>
+        <a th:href="@{/categorias}">Categorías</a>
+        <a th:href="@{/carrito}">Compras</a>
+        <a th:href="@{/favoritos}">Favoritos</a>
+        <a th:href="@{/perfil}">Perfil</a>
+    </nav>
+    <a th:href="@{/logout}" class="btn-header">Cerrar sesión</a>
+</header>

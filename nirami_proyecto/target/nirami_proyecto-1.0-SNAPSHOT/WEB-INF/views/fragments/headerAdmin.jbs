@@ -1,0 +1,13 @@
+<header th:fragment="header-admin-nirami" xmlns:th="http://www.thymeleaf.org">
+    <h1 class="logo">NIRAMI</h1>
+    <nav>
+        <a th:href="@{/admin}">Dashboard</a>
+        <a th:href="@{/admin/productos}">Productos</a>
+        <a th:href="@{/admin/categorias}">Categorías</a>
+        <a th:href="@{/admin/vendedores}">Vendedores</a>
+        <a th:href="@{/admin/clientes}">Clientes</a>
+        <a th:href="@{/admin/ventas}">Ventas</a>
+        <a th:href="@{/admin/perfil}">Perfil</a>
+    </nav>
+    <a th:href="@{/logout}" class="btn-header">Cerrar sesión</a>
+</header>

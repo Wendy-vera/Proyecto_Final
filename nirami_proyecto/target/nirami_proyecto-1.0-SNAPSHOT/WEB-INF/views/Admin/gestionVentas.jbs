@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Ventas | Admin NIRAMI</title>
+    <link rel="stylesheet" th:href="@{/assets/css/admin.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header th:replace="~{fragments/headerAdmin :: header-admin-nirami}"></header>
+
+<main>
+    <div th:if="${mensajeExito}" class="alert alert-success" th:text="${mensajeExito}"></div>
+    <div th:if="${mensajeError}" class="alert alert-error"   th:text="${mensajeError}"></div>
+
+    <div class="panel">
+        <div class="panel-header">
+            <span>Historial de ventas (<span th:text="${ventas != null ? #lists.size(ventas) : 0}">0</span>)</span>
+        </div>
+        <div class="tabla-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#Venta</th>
+                        <th>Cliente</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                        <th>Cambiar estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="v : ${ventas}">
+                        <td><strong th:text="${v.idVenta}"></strong></td>
+                        <td th:text="${v.nombreCliente}"></td>
+                        <td th:text="${v.fechaVenta != null ? #temporals.format(v.fechaVenta,'dd/MM/yyyy HH:mm') : '—'}"></td>
+                        <td style="font-weight:700;color:var(--azul);"
+                            th:text="'$' + ${#numbers.formatDecimal(v.total,1,'COMMA',0,'POINT')}"></td>
+                        <td>
+                            <span th:text="${v.estado}"
+                                  th:class="${v.estado == 'Completada'} ? 'badge badge-verde'
+                                           : (${v.estado == 'Cancelada'} ? 'badge badge-rojo'
+                                           : 'badge badge-amarillo')">
+                            </span>
+                        </td>
+                        <td>
+                            <form th:action="@{/admin/venta/estado}" method="post" style="display:flex;gap:6px;flex-wrap:wrap;">
+                                <input type="hidden" name="idVenta" th:value="${v.idVenta}">
+                                <button type="submit" name="estado" value="Completada"
+                                        class="btn btn-turquesa"
+                                        th:disabled="${v.estado == 'Completada'}">Completar</button>
+                                <button type="submit" name="estado" value="Cancelada"
+                                        class="btn btn-naranja"
+                                        th:disabled="${v.estado == 'Cancelada'}">Cancelar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:if="${ventas == null or #lists.isEmpty(ventas)}">
+                        <td colspan="6" style="text-align:center;padding:30px;color:#999;">No hay ventas registradas.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
+</html>

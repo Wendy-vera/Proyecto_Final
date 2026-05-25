@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Productos | Nirami</title>
+    <link rel="stylesheet" href="/nirami_proyecto/assets/css/styles.css">
+    <link rel="stylesheet" href="/nirami_proyecto/assets/css/crearProductos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1 class="logo">Gestion de productos</h1>
+    <nav>
+        <a th:href="@{/crearProductos}">Inicio</a>
+        <a th:href="@{/perfilVendedor}">Perfil</a>
+    </nav>
+    <a th:href="@{/login}" class="btn-header">Cerrar sesión</a>
+</header>
+
+<div th:if="${mensajeExito}" class="alert alert-success" th:text="${mensajeExito}" style="margin: 10px 32px;"></div>
+<div th:if="${mensajeError}" class="alert alert-error"   th:text="${mensajeError}" style="margin: 10px 32px;"></div>
+
+    <div class="main-container">
+
+        <!-- BARRA SUPERIOR: buscador + botones -->
+        <div class="top-bar">
+            <form th:action="@{/crearProductos}" method="get" style="display:contents;">
+                <input type="text" class="search-input" name="busqueda"
+                    placeholder="Buscar producto..."
+                    th:value="${busqueda}">
+                <button type="submit" class="btn btn-buscar">BUSCAR</button>
+            </form>
+            <a th:href="@{/crearProductos(crear=true)}" class="btn btn-crear"
+            style="text-decoration:none; white-space:nowrap;">+ CREAR</a>
+        </div>
+
+        <!-- FORMULARIO — visible solo con ?crear=true o ?editar=ID -->
+        <div class="panel-form" th:if="${mostrarFormulario}">
+
+            <div class="panel-form-body">
+                <p class="form-title"
+                th:text="${productoEditar != null} ? 'EDITAR PRODUCTO' : 'CREAR PRODUCTO'">
+                    Crear producto
+                </p>
+
+                <form th:action="@{/vendor/producto/guardar}" method="post" enctype="multipart/form-data">
+
+                    <input type="hidden" name="idProducto"
+                        th:value="${productoEditar != null ? productoEditar.idProducto : ''}">
+
+                    <div class="form-grid">
+                        <div class="form-fields">
+
+                            <div class="form-group">
+                                <label for="nombreProducto">Nombre del producto:</label>
+                                <input type="text" id="nombreProducto" name="nombreProducto"
+                                    placeholder="ej. peluche de vaca"
+                                    th:value="${productoEditar != null ? productoEditar.nombreProducto : ''}"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descripcionProducto">descripcion del producto:</label>
+                                <textarea id="descripcionProducto" name="descripcionProducto"
+                                        placeholder="ej. peluche abrazable tejido a mano"
+                                        th:text="${productoEditar != null ? productoEditar.descripcionProducto : ''}"
+                                        required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="imagenProducto">Imagen del producto:</label>
+                                <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="precioProducto">Precio del producto:</label>
+                                <input type="number" id="precioProducto" name="precioProducto"
+                                    min="1000" step="1"
+                                    th:value="${productoEditar != null ? productoEditar.precioProducto : ''}"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cantidadProducto">Cantidad disponible del producto:</label>
+                                <input type="number" id="cantidadProducto" name="cantidadProducto"
+                                    min="0"
+                                    th:value="${productoEditar != null ? productoEditar.cantidadProducto : ''}"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="categoriaProducto">Categoria del producto:</label>
+                                <select id="categoriaProducto" name="idCategoria" required>
+                                    <option value="">-- Seleccione --</option>
+                                    <option th:each="cat : ${categorias}"
+                                            th:value="${cat.idCategoria}"
+                                            th:text="${cat.nombreCategoria}"
+                                            th:selected="${productoEditar != null
+                                                        and productoEditar.categoria != null
+                                                        and productoEditar.categoria.idCategoria == cat.idCategoria}">
+                                    </option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="image-area">
+                            <span class="image-preview-label">vista previa de imagen</span>
+                            <div class="image-preview">
+                                <img th:if="${productoEditar != null and productoEditar.imagenProducto != null}"
+                                    th:src="@{'/assets/imagenes/imgproductos/' + ${productoEditar.imagenProducto}}"
+                                    alt="preview">
+                                <span th:unless="${productoEditar != null and productoEditar.imagenProducto != null}"
+                                    class="image-placeholder-text">Sin imagen</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-enviar">ENVIAR</button>
+                        <a th:href="@{/crearProductos}" class="btn btn-cancelar"
+                        style="text-decoration:none;">CANCELAR</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- LISTA DE PRODUCTOS -->
+        <p class="products-label">Productos creados:</p>
+
+        <div id="listaProductos">
+
+            <div th:if="${productos == null or #lists.isEmpty(productos)}" class="empty-state">
+                No hay productos registrados aún.
+            </div>
+
+            <div th:each="producto : ${productos}" class="product-card">
+                <img class="product-thumb"
+                    th:src="${producto.imagenProducto != null}
+                            ? @{'/assets/imagenes/imgproductos/' + ${producto.imagenProducto}}
+                            : @{/assets/imagenes/imgPerfil/Avatar.png}"
+                    th:alt="${producto.nombreProducto}">
+
+                <div class="product-info">
+                    <span class="product-name" th:text="${producto.nombreProducto}"></span>
+                    <span class="product-desc" th:text="${producto.descripcionProducto}"></span>
+                    <span class="product-meta"
+                        th:text="'$' + ${#numbers.formatDecimal(producto.precioProducto,1,2)}
+                                + ' | Stock: ' + ${producto.cantidadProducto}">
+                    </span>
+                    <div class="product-actions">
+                        <a th:href="@{/crearProductos(editar=${producto.idProducto})}"
+                        class="btn btn-editar" style="text-decoration:none;">EDITAR</a>
+                        <form th:action="@{/vendor/producto/eliminar}" method="post" style="display:inline;">
+                            <input type="hidden" name="idProducto" th:value="${producto.idProducto}">
+                            <button type="submit" class="btn btn-eliminar">ELIMINAR</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

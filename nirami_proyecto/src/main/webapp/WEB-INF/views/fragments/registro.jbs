@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro | NIRAMI</title>
+    <link rel="stylesheet" th:href="@{/assets/css/registro.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+<section class="registro-box">
+
+    <div class="auth-avatar">
+        <i class="fa-solid fa-user-plus"></i>
+    </div>
+
+    <div th:if="${session.mensajeError}" style="max-width:500px;width:100%;margin-bottom:12px;padding:12px 20px;border-radius:6px;background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;font-size:.9rem;" th:text="${session.mensajeError}"></div>
+
+    <form action="/nirami_proyecto/auth/registro" method="post">
+
+        <h2 style="font-family:'Suez One',serif;color:#303242;margin-bottom:10px;text-align:center;">Crear cuenta</h2>
+
+        <div class="input-group">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" name="nombreUsuario" placeholder="Nombre de usuario" required>
+        </div>
+        <div class="input-group">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" name="correo" placeholder="Correo electrónico" required>
+        </div>
+        <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" name="contrasena" placeholder="Contraseña" required>
+        </div>
+        <div class="input-group">
+            <i class="fa-solid fa-shield-halved"></i>
+            <input type="password" name="confirmarContrasena" placeholder="Confirmar contraseña" required>
+        </div>
+
+        <div class="input-group" style="gap:15px;">
+            <i class="fa-solid fa-id-badge"></i>
+            <select name="idRol" style="border:none;outline:none;width:100%;font-size:1rem;font-family:'Poppins',sans-serif;background:transparent;color:#303242;">
+                <option value="3">Cliente</option>
+                <option value="2">Vendedor</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-primary">Registrarse</button>
+        <p class="login-link">¿Ya tienes cuenta? <a href="/nirami_proyecto/login">Iniciar sesión</a></p>
+    </form>
+</section>
+</body>
+</html>

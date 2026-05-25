@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Clientes | Admin NIRAMI</title>
+    <link rel="stylesheet" th:href="@{/assets/css/admin.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header th:replace="~{fragments/headerAdmin :: header-admin-nirami}"></header>
+
+<main>
+    <div th:if="${mensajeExito}" class="alert alert-success" th:text="${mensajeExito}"></div>
+    <div th:if="${mensajeError}" class="alert alert-error"   th:text="${mensajeError}"></div>
+
+    <div class="panel">
+        <div class="panel-header">
+            <span>Clientes registrados (<span th:text="${clientes != null ? #lists.size(clientes) : 0}">0</span>)</span>
+        </div>
+        <div class="tabla-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre de usuario</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Fecha registro</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cli : ${clientes}">
+                        <td th:text="${cli.idUsuario}"></td>
+                        <td>
+                            <div style="display:flex;align-items:center;gap:10px;">
+                                <div style="width:36px;height:36px;border-radius:50%;background:var(--gris);display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa-solid fa-user" style="color:var(--azul);font-size:.9rem;"></i>
+                                </div>
+                                <strong th:text="${cli.nombreUsuario}"></strong>
+                            </div>
+                        </td>
+                        <td th:text="${cli.correo != null ? cli.correo : '—'}"></td>
+                        <td th:text="${cli.telefono != null ? cli.telefono : '—'}"></td>
+                        <td th:text="${cli.fechaRegistro != null ? #temporals.format(cli.fechaRegistro,'dd/MM/yyyy') : '—'}"></td>
+                        <td>
+                            <span th:if="${cli.activo}"   class="badge badge-verde">Activo</span>
+                            <span th:unless="${cli.activo}" class="badge badge-rojo">Bloqueado</span>
+                        </td>
+                        <td>
+                            <form th:action="@{/admin/usuario/estado}" method="post" style="display:inline;">
+                                <input type="hidden" name="idUsuario" th:value="${cli.idUsuario}">
+                                <input type="hidden" name="destino"   value="cliente">
+                                <input type="hidden" name="activo"    th:value="${!cli.activo}">
+                                <button type="submit"
+                                        th:class="${cli.activo} ? 'btn btn-naranja' : 'btn btn-turquesa'"
+                                        th:text="${cli.activo} ? 'Bloquear' : 'Activar'">
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:if="${clientes == null or #lists.isEmpty(clientes)}">
+                        <td colspan="7" style="text-align:center;padding:30px;color:#999;">No hay clientes registrados.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
+</html>

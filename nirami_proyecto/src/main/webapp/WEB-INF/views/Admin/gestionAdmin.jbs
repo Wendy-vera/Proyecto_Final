@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Admin | NIRAMI</title>
+    <link rel="stylesheet" th:href="@{/assets/css/admin.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header th:replace="~{fragments/headerAdmin :: header-admin-nirami}"></header>
+
+<main>
+    <div th:if="${mensajeExito}" class="alert alert-success" th:text="${mensajeExito}"></div>
+
+    <h2 style="font-family:'Suez One',serif;margin-bottom:24px;">Bienvenido, <span th:text="${sessionNombre}">Admin</span></h2>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <i class="fa-solid fa-users" style="color:var(--gris);"></i>
+            <p class="stat-num" th:text="${totalClientes}">0</p>
+            <p class="stat-label">Clientes</p>
+        </div>
+        <div class="stat-card" style="border-top-color:var(--turquesa);">
+            <i class="fa-solid fa-store" style="color:var(--gris);"></i>
+            <p class="stat-num" th:text="${totalVendedores}">0</p>
+            <p class="stat-label">Vendedores</p>
+        </div>
+        <div class="stat-card" style="border-top-color:var(--turquesa);">
+            <i class="fa-solid fa-box-open" style="color:var(--gris);"></i>
+            <p class="stat-num" th:text="${totalProductos}">0</p>
+            <p class="stat-label">Productos</p>
+        </div>
+        <div class="stat-card" style="border-top-color:var(--turquesa);">
+            <i class="fa-solid fa-receipt" style="color:var(--gris);"></i>
+            <p class="stat-num" th:text="${totalVentas}">0</p>
+            <p class="stat-label">Ventas</p>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-header">Accesos rápidos</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;padding:24px;">
+            
+            <a th:href="@{/admin/productos}" style="text-decoration:none;background:var(--gris);border-radius:10px;padding:20px;text-align:center;transition:.2s;" onmouseover="this.style.background='#c8cedf'" onmouseout="this.style.background='var(--gris)'">
+                <i class="fa-solid fa-box-open" style="font-size:1.8rem;color:var(--blanco);margin-bottom:8px;display:block;"></i>
+                <span style="font-weight:600;color:var(--oscuro);">Productos</span>
+            </a>
+            
+            <a th:href="@{/admin/categorias}" style="text-decoration:none;background:var(--gris);border-radius:10px;padding:20px;text-align:center;transition:.2s;" onmouseover="this.style.background='#c8cedf'" onmouseout="this.style.background='var(--gris)'">
+                <i class="fa-solid fa-tags" style="font-size:1.8rem;color:var(--blanco);margin-bottom:8px;display:block;"></i>
+                <span style="font-weight:600;color:var(--oscuro);">Categorías</span>
+            </a>
+            
+            <a th:href="@{/admin/vendedores}" style="text-decoration:none;background:var(--gris);border-radius:10px;padding:20px;text-align:center;transition:.2s;" onmouseover="this.style.background='#c8cedf'" onmouseout="this.style.background='var(--gris)'">
+                <i class="fa-solid fa-store" style="font-size:1.8rem;color:var(--blanco);margin-bottom:8px;display:block;"></i>
+                <span style="font-weight:600;color:var(--oscuro);">Vendedores</span>
+            </a>
+            
+            <a th:href="@{/admin/clientes}" style="text-decoration:none;background:var(--gris);border-radius:10px;padding:20px;text-align:center;transition:.2s;" onmouseover="this.style.background='#c8cedf'" onmouseout="this.style.background='var(--gris)'">
+                <i class="fa-solid fa-users" style="font-size:1.8rem;color:var(--blanco);margin-bottom:8px;display:block;"></i>
+                <span style="font-weight:600;color:var(--oscuro);">Clientes</span>
+            </a>
+            
+            <a th:href="@{/admin/ventas}" style="text-decoration:none;background:var(--gris);border-radius:10px;padding:20px;text-align:center;transition:.2s;" onmouseover="this.style.background='#c8cedf'" onmouseout="this.style.background='var(--gris)'">
+                <i class="fa-solid fa-receipt" style="font-size:1.8rem;color:var(--blanco);margin-bottom:8px;display:block;"></i>
+                <span style="font-weight:600;color:var(--oscuro);">Ventas</span>
+            </a>
+            
+        </div>
+    </div>
+</main>
+</body>
+</html>
