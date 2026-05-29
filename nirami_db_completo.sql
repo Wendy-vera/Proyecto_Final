@@ -1,6 +1,5 @@
 -- ============================================================
 --  BASE DE DATOS: NIRAMI - Venta de Artesanías
---  nirami_db_completo.sql — versión completa lista para ejecutar
 -- ============================================================
 
 CREATE DATABASE IF NOT EXISTS nirami_db_completo
@@ -15,13 +14,13 @@ CREATE TABLE IF NOT EXISTS roles (
     descripcion VARCHAR(255)
 );
 
--- Roles del sistema (Moderador = funciones de Administrador)
+-- Roles del sistema
 INSERT IGNORE INTO roles (id_rol, nombre_rol, descripcion) VALUES
   (1, 'Administrador', 'Control total del sistema: usuarios, productos, categorías, ventas'),
   (2, 'Vendedor',      'Publica y gestiona sus propios productos'),
   (3, 'Cliente',       'Navega el catálogo y realiza compras');
 
--- ── USUARIOS ─────────────────────────────────────────────────
+-- USUARIOS
 CREATE TABLE IF NOT EXISTS usuarios (
     id_usuario     INT AUTO_INCREMENT PRIMARY KEY,
     id_rol         INT NOT NULL,
@@ -36,7 +35,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
 INSERT IGNORE INTO usuarios (id_usuario, id_rol, nombre_usuario, contrasena) VALUES
   (1, 1, 'admin', 'admin123');
 
--- ── CORREOS ───────────────────────────────────────────────────
+-- CORREOS 
 CREATE TABLE IF NOT EXISTS correos (
     id_correo  INT AUTO_INCREMENT PRIMARY KEY,
     correo     VARCHAR(100) NOT NULL UNIQUE,
@@ -47,7 +46,7 @@ CREATE TABLE IF NOT EXISTS correos (
 INSERT IGNORE INTO correos (correo, id_usuario) VALUES
   ('admin@nirami.com', 1);
 
--- ── TELÉFONOS ─────────────────────────────────────────────────
+-- TELÉFONOS
 CREATE TABLE IF NOT EXISTS telefonos (
     id_telefono INT AUTO_INCREMENT PRIMARY KEY,
     telefono    VARCHAR(15) NOT NULL,
@@ -55,7 +54,7 @@ CREATE TABLE IF NOT EXISTS telefonos (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
 
--- ── SESIONES ──────────────────────────────────────────────────
+-- SESIONES
 CREATE TABLE IF NOT EXISTS sesiones (
     id_sesion       INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario      INT NOT NULL,
@@ -66,7 +65,7 @@ CREATE TABLE IF NOT EXISTS sesiones (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
 
--- ── CATEGORÍAS ────────────────────────────────────────────────
+-- CATEGORÍAS
 CREATE TABLE IF NOT EXISTS categorias (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
     nombre       VARCHAR(100) NOT NULL,
@@ -81,7 +80,7 @@ INSERT IGNORE INTO categorias (nombre, descripcion) VALUES
   ('Figuras',    'Figuras decorativas y esculturas artesanales'),
   ('Otros',      'Artesanías de diversas técnicas y materiales');
 
--- ── PRODUCTOS ─────────────────────────────────────────────────
+-- PRODUCTOS
 CREATE TABLE IF NOT EXISTS productos (
     id_producto       INT AUTO_INCREMENT PRIMARY KEY,
     id_categoria      INT NOT NULL,
@@ -98,7 +97,7 @@ CREATE TABLE IF NOT EXISTS productos (
     FOREIGN KEY (id_vendedor)  REFERENCES usuarios(id_usuario)
 );
 
--- ── MODERACIÓN DE PRODUCTOS ───────────────────────────────────
+-- MODERACIÓN DE PRODUCTOS
 -- (el rol Moderador no existe; estas acciones las realiza el Administrador)
 CREATE TABLE IF NOT EXISTS moderacion_productos (
     id_moderacion      INT AUTO_INCREMENT PRIMARY KEY,
@@ -111,7 +110,7 @@ CREATE TABLE IF NOT EXISTS moderacion_productos (
     FOREIGN KEY (id_moderador) REFERENCES usuarios(id_usuario)
 );
 
--- ── VENTAS ────────────────────────────────────────────────────
+-- VENTAS
 CREATE TABLE IF NOT EXISTS ventas (
     id_venta    INT AUTO_INCREMENT PRIMARY KEY,
     id_cliente  INT NOT NULL,
@@ -121,7 +120,7 @@ CREATE TABLE IF NOT EXISTS ventas (
     FOREIGN KEY (id_cliente) REFERENCES usuarios(id_usuario)
 );
 
--- ── DETALLE DE VENTAS ─────────────────────────────────────────
+-- DETALLE DE VENTAS
 CREATE TABLE IF NOT EXISTS detalle_ventas (
     id_detalle      INT AUTO_INCREMENT PRIMARY KEY,
     id_venta        INT NOT NULL,
@@ -132,19 +131,7 @@ CREATE TABLE IF NOT EXISTS detalle_ventas (
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
 
--- ── RESEÑAS ───────────────────────────────────────────────────
-CREATE TABLE IF NOT EXISTS resenas (
-    id_resena    INT AUTO_INCREMENT PRIMARY KEY,
-    id_producto  INT NOT NULL,
-    id_usuario   INT NOT NULL,
-    calificacion TINYINT CHECK (calificacion BETWEEN 1 AND 5),
-    comentario   TEXT,
-    fecha_resena DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
-    FOREIGN KEY (id_usuario)  REFERENCES usuarios(id_usuario)
-);
-
--- ── FAVORITOS ─────────────────────────────────────────────────
+-- FAVORITOS 
 CREATE TABLE IF NOT EXISTS favoritos (
     id_favorito   INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario    INT NOT NULL,
@@ -155,7 +142,7 @@ CREATE TABLE IF NOT EXISTS favoritos (
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
 
--- ── NOTIFICACIONES ────────────────────────────────────────────
+-- NOTIFICACIONES
 CREATE TABLE IF NOT EXISTS notificaciones (
     id_notificacion INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario      INT NOT NULL,
@@ -166,7 +153,7 @@ CREATE TABLE IF NOT EXISTS notificaciones (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
 
--- ── RECUPERACIÓN DE CONTRASEÑA ────────────────────────────────
+-- RECUPERACIÓN DE CONTRASEÑA
 CREATE TABLE IF NOT EXISTS recuperacion_contrasena (
     id_recuperacion  INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario       INT NOT NULL,
@@ -176,10 +163,6 @@ CREATE TABLE IF NOT EXISTS recuperacion_contrasena (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
 
--- ============================================================
---  MIGRACIÓN: agregar columna imagen si no existe
---  (segura si ya fue aplicada la migración anterior)
--- ============================================================
 ALTER TABLE productos
     MODIFY COLUMN imagen VARCHAR(255) NULL
         COMMENT 'Nombre del archivo en assets/imagenes/imgproductos/';

@@ -30,4 +30,8 @@ public class Categoria {
     public String toString() {
         return "Categoria{id=" + idCategoria + ", nombre=" + nombreCategoria + "}";
     }
+
+    public void setThemeDescription(String descripcion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
