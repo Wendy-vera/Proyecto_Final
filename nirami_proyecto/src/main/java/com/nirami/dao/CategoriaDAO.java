@@ -3,20 +3,12 @@ package com.nirami.dao;
 import com.nirami.model.Categoria;
 import database_nirami.ClassConexion;
 
-<<<<<<< HEAD
 import java.sql.*;
-=======
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
->>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriaDAO {
 
-<<<<<<< HEAD
     public List<Categoria> listarTodas() {
         List<Categoria> lista = new ArrayList<>();
         String sql = "SELECT id_categoria, nombre, descripcion, activa FROM categorias ORDER BY nombre";
@@ -39,38 +31,10 @@ public class CategoriaDAO {
             while (rs.next()) lista.add(mapear(rs));
         } catch (SQLException e) {
             System.err.println("[CategoriaDAO] listarActivas: " + e.getMessage());
-=======
-    /**
-     * Devuelve todas las categorías activas para poblar el &lt;select&gt; del formulario.
-     */
-    public List<Categoria> listarTodas() {
-        List<Categoria> lista = new ArrayList<>();
-        String sql = "SELECT id_categoria, nombre, descripcion " +
-                     "FROM categorias " +
-                     "WHERE activa = TRUE " +
-                     "ORDER BY nombre";
-
-        try (Connection con = ClassConexion.MetodoConexion();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
-                Categoria c = new Categoria();
-                c.setIdCategoria(rs.getInt("id_categoria"));
-                c.setNombreCategoria(rs.getString("nombre"));
-                c.setDescripcion(rs.getString("descripcion"));
-                lista.add(c);
-            }
-
-        } catch (SQLException e) {
-            System.err.println("[CategoriaDAO] Error al listar categorías: " + e.getMessage());
-            e.printStackTrace();
->>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
         }
         return lista;
     }
 
-<<<<<<< HEAD
     public Categoria buscarPorId(int idCategoria) {
         String sql = "SELECT id_categoria, nombre, descripcion, activa FROM categorias WHERE id_categoria = ?";
         try (Connection con = ClassConexion.MetodoConexion();
@@ -130,33 +94,4 @@ public class CategoriaDAO {
         c.setActiva(rs.getBoolean("activa"));
         return c;
     }
-=======
-    /**
-     * Busca una categoría por su ID.
-     */
-    public Categoria buscarPorId(int idCategoria) {
-        String sql = "SELECT id_categoria, nombre, descripcion " +
-                     "FROM categorias WHERE id_categoria = ?";
-
-        try (Connection con = ClassConexion.MetodoConexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setInt(1, idCategoria);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    Categoria c = new Categoria();
-                    c.setIdCategoria(rs.getInt("id_categoria"));
-                    c.setNombreCategoria(rs.getString("nombre"));
-                    c.setDescripcion(rs.getString("descripcion"));
-                    return c;
-                }
-            }
-
-        } catch (SQLException e) {
-            System.err.println("[CategoriaDAO] Error al buscar categoría: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return null;
-    }
->>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
 }

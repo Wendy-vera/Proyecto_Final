@@ -6,22 +6,12 @@
 
     <session-config>
         <session-timeout>30</session-timeout>
-<<<<<<< HEAD
         <tracking-mode>URL</tracking-mode>
     </session-config>
 
-=======
-    </session-config>
-
-    <!-- Servlet por defecto de Tomcat para archivos estáticos (css, imágenes, fonts) -->
->>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/assets/*</url-pattern>
     </servlet-mapping>
 
-<<<<<<< HEAD
 </web-app>
-=======
-</web-app>
->>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5

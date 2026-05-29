@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -51,35 +50,3 @@
 </footer>
 </body>
 </html>
-=======
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Carrito | NIRAMI</title>
-    <link rel="stylesheet" href="/nirami_proyecto/assets/css/index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Suez+One&display=swap" rel="stylesheet">
-</head>
-<body>
-<header>
-    <h1 class="logo">NIRAMI</h1>
-    <nav>
-        <a href="/nirami_proyecto/index">Inicio</a>
-        <a href="/nirami_proyecto/categorias">Categorías</a>
-        <a href="/nirami_proyecto/carrito">Compras</a>
-        <a href="/nirami_proyecto/favoritos">Favoritos</a>
-        <a href="/nirami_proyecto/perfil">Perfil</a>
-    </nav>
-    <a href="/nirami_proyecto/login" class="btn-header">Cerrar sesión</a>
-</header>
-<main>
-    <section class="seccion">
-        <h2>Carrito</h2>
-        <div class="card">Producto 1 - $30.000</div>
-        <div class="card">Producto 2 - $20.000</div>
-        <h3>Total: $50.000</h3>
-        <a href="/nirami_proyecto/index" class="btn-primary">Pagar</a>
-    </section>
-</main>
-</body>
-</html>
->>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5

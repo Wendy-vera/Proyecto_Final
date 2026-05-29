@@ -2,29 +2,18 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-<<<<<<< HEAD
     <title>Iniciar Sesión | NIRAMI</title>
     <link rel="stylesheet" th:href="@{/assets/css/login.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
 </head>
 <body>
-=======
-    <title>Login | NIRAMI</title>
-    <link rel="stylesheet" href="/nirami_proyecto/assets/css/login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Suez+One&display=swap" rel="stylesheet">
-</head>
-<body>
-
->>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
 <section class="auth-page">
 
     <div class="auth-avatar">
         <i class="fa-solid fa-user"></i>
     </div>
 
-<<<<<<< HEAD
     <div th:if="${session.mensajeError}" class="alert alert-error" th:text="${session.mensajeError}"
          style="max-width:600px;width:100%;margin-bottom:15px;padding:12px 20px;border-radius:6px;background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;font-size:.9rem;"></div>
     <div th:if="${session.mensajeExito}" class="alert alert-success" th:text="${session.mensajeExito}"
@@ -39,17 +28,6 @@
             <div class="input-group">
                 <i class="fa-solid fa-lock"></i>
                 <input type="password" name="contrasena" placeholder="Contraseña" required>
-=======
-    <div class="auth-card">
-        <form action="/nirami_proyecto/index" method="get">
-            <div class="input-group">
-                <i class="fa-solid fa-envelope"></i>
-                <input type="email" placeholder="Correo electrónico" required>
-            </div>
-            <div class="input-group">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" placeholder="Contraseña" required>
->>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
             </div>
             <a href="#" class="forgot-link">¿Olvidó su contraseña?</a>
             <button type="submit" class="btn-primary">Iniciar sesión</button>
