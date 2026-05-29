@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\3065369\NADAqueVER\ProyectoNirami_completo\nirami_proyecto\src\main\java\com\nirami\model\Categoria.java
 D:\3065369\NADAqueVER\ProyectoNirami_completo\nirami_proyecto\src\main\java\com\nirami\model\Venta.java
 D:\3065369\NADAqueVER\ProyectoNirami_completo\nirami_proyecto\src\main\java\com\nirami\dao\CategoriaDAO.java
@@ -10,3 +11,12 @@ D:\3065369\NADAqueVER\ProyectoNirami_completo\nirami_proyecto\src\main\java\com\
 D:\3065369\NADAqueVER\ProyectoNirami_completo\nirami_proyecto\src\main\java\com\nirami\model\Usuario.java
 D:\3065369\NADAqueVER\ProyectoNirami_completo\nirami_proyecto\src\main\java\com\nirami\utils\IUUtils.java
 D:\3065369\NADAqueVER\ProyectoNirami_completo\nirami_proyecto\src\main\java\database_nirami\ClassConexion.java
+=======
+C:\Users\Usuario\Documents\ProyectoNirami_actualizado\ProyectoNirami\nirami_proyecto\src\main\java\com\nirami\model\Categoria.java
+C:\Users\Usuario\Documents\ProyectoNirami_actualizado\ProyectoNirami\nirami_proyecto\src\main\java\com\nirami\model\Producto.java
+C:\Users\Usuario\Documents\ProyectoNirami_actualizado\ProyectoNirami\nirami_proyecto\src\main\java\com\nirami\dao\CategoriaDAO.java
+C:\Users\Usuario\Documents\ProyectoNirami_actualizado\ProyectoNirami\nirami_proyecto\src\main\java\com\nirami\dao\ProductoDAO.java
+C:\Users\Usuario\Documents\ProyectoNirami_actualizado\ProyectoNirami\nirami_proyecto\src\main\java\com\nirami\servlet\FrontController.java
+C:\Users\Usuario\Documents\ProyectoNirami_actualizado\ProyectoNirami\nirami_proyecto\src\main\java\database_nirami\ClassConexion.java
+C:\Users\Usuario\Documents\ProyectoNirami_actualizado\ProyectoNirami\nirami_proyecto\src\main\java\com\nirami\utils\IUUtils.java
+>>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5

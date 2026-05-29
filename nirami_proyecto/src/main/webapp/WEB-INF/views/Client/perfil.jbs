@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -20,11 +21,38 @@
         <div class="card-banner"></div>
         <div class="card-header">
             <img th:src="@{/assets/imagenes/imgPerfil/Avatar.png}" alt="Avatar" class="avatar">
+=======
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil | NIRAMI</title>
+    <link rel="stylesheet" href="/nirami_proyecto/assets/css/perfil.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1 class="logo">NIRAMI</h1>
+    <nav>
+        <a href="/nirami_proyecto/index">Inicio</a>
+        <a href="/nirami_proyecto/categorias">Categorías</a>
+        <a href="/nirami_proyecto/carrito">Compras</a>
+        <a href="/nirami_proyecto/favoritos">Favoritos</a>
+        <a href="/nirami_proyecto/perfil">Perfil</a>
+    </nav>
+    <a href="/nirami_proyecto/login" class="btn-header">Cerrar sesión</a>
+</header>
+<main class="contenedor-principal">
+    <div class="card">
+        <div class="card-banner"></div>
+        <div class="card-header">
+            <img src="/nirami_proyecto/assets/imagenes/imgPerfil/Avatar.png" alt="Avatar" class="avatar">
+>>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
         </div>
         <div class="card-body">
             <h2 class="card-titulo">Mi Perfil</h2>
             <div class="info-usuario">
                 <div class="dato">
+<<<<<<< HEAD
                     <span class="etiqueta">Nombre de usuario</span>
                     <p class="valor" th:text="${usuario != null ? usuario.nombreUsuario : sessionNombre}">-</p>
                 </div>
@@ -90,3 +118,22 @@ function toggleEditar() {
 </script>
 </body>
 </html>
+=======
+                    <span class="etiqueta">Nombre</span>
+                    <p class="valor">Usuario de Nirami</p>
+                </div>
+                <div class="dato">
+                    <span class="etiqueta">Correo Electrónico</span>
+                    <p class="valor">usuario@email.com</p>
+                </div>
+            </div>
+            <div class="perfil-acciones">
+                <a href="#" class="btn-secondary">Editar Perfil</a>
+                <a href="/nirami_proyecto/login" class="btn-close">Cerrar Sesión</a>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
+>>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5

@@ -1,6 +1,7 @@
 <header th:fragment="header-nirami" xmlns:th="http://www.thymeleaf.org">
     <h1 class="logo">NIRAMI</h1>
     <nav>
+<<<<<<< HEAD
         <a th:href="@{/index}">Inicio</a>
         <a th:href="@{/categorias}">Categorías</a>
         <a th:href="@{/carrito}">Compras</a>
@@ -8,4 +9,13 @@
         <a th:href="@{/perfil}">Perfil</a>
     </nav>
     <a th:href="@{/logout}" class="btn-header">Cerrar sesión</a>
+=======
+        <a href="/nirami_proyecto/index">Inicio</a>
+        <a href="/nirami_proyecto/categorias">Categorías</a>
+        <a href="/nirami_proyecto/carrito">Compras</a>
+        <a href="/nirami_proyecto/favoritos">Favoritos</a>
+        <a href="/nirami_proyecto/perfil">Perfil</a>
+    </nav>
+    <a href="/nirami_proyecto/login" class="btn-header">Cerrar sesión</a>
+>>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
 </header>

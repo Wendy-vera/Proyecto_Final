@@ -1,4 +1,5 @@
 com\nirami\dao\CategoriaDAO.class
+<<<<<<< HEAD
 com\nirami\dao\ProductoDAO.class
 com\nirami\servlet\FrontController.class
 com\nirami\model\Venta.class
@@ -9,4 +10,11 @@ com\nirami\model\Usuario.class
 com\nirami\dao\VentaDAO.class
 com\nirami\dao\UsuarioDAO.class
 com\nirami\model\Producto.class
+=======
+database_nirami\ClassConexion.class
+com\nirami\dao\ProductoDAO.class
+com\nirami\servlet\FrontController.class
+com\nirami\model\Producto.class
+com\nirami\model\Categoria.class
+>>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
 com\nirami\utils\IUUtils.class

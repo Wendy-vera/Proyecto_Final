@@ -1,16 +1,25 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Mi Perfil | Vendedor NIRAMI</title>
     <link rel="stylesheet" th:href="@{/assets/css/perfil.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+=======
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil | Vendor</title>
+    <link rel="stylesheet" href="/nirami_proyecto/assets/css/perfil.css">
+>>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Suez+One&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
     <h1 class="logo">NIRAMI</h1>
     <nav>
+<<<<<<< HEAD
         <a th:href="@{/crearProductos}">Inicio</a>
         <a th:href="@{/perfilVendedor}">Perfil</a>
     </nav>
@@ -23,12 +32,22 @@
     <div th:if="${mensajeError}" style="background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;padding:12px 20px;border-radius:6px;margin-bottom:15px;max-width:500px;width:100%;" th:text="${mensajeError}"></div>
 
     <div class="card" id="vistaInfo">
+=======
+        <a href="/nirami_proyecto/crearProductos">Inicio</a>
+        <a href="/nirami_proyecto/perfilVendedor">Perfil</a>
+    </nav>
+    <a href="/nirami_proyecto/login" class="btn-header">Cerrar sesión</a>
+</header>
+<main class="contenedor-principal">
+    <div class="card">
+>>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
         <div class="card-banner"></div>
         <div class="card-header">
             <img src="/nirami_proyecto/assets/imagenes/imgPerfil/Avatar.png" alt="Avatar" class="avatar">
         </div>
         <div class="card-body">
             <h2 class="card-titulo">Mi Perfil</h2>
+<<<<<<< HEAD
             <span style="display:inline-block;background:#4586FF;color:white;padding:4px 14px;border-radius:20px;font-size:.78rem;font-weight:600;margin-bottom:20px;">Vendedor</span>
             <div class="info-usuario">
                 <div class="dato">
@@ -87,5 +106,24 @@ function toggleEditar() {
     vi.style.display = vi.style.display === 'none' ? 'block' : 'none';
 }
 </script>
+=======
+            <div class="info-usuario">
+                <div class="dato">
+                    <span class="etiqueta">Nombre</span>
+                    <p class="valor">Usuario de Nirami</p>
+                </div>
+                <div class="dato">
+                    <span class="etiqueta">Correo Electrónico</span>
+                    <p class="valor">usuario@email.com</p>
+                </div>
+            </div>
+            <div class="perfil-acciones">
+                <a href="#" class="btn-secondary">Editar Perfil</a>
+                <a href="/nirami_proyecto/login" class="btn-close">Cerrar Sesión</a>
+            </div>
+        </div>
+    </div>
+</main>
+>>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
 </body>
 </html>

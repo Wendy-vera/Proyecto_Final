@@ -2,6 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <title>Nirami - Artesanías</title>
     <link rel="stylesheet" th:href="@{/assets/css/index.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -21,11 +22,41 @@
     <form th:action="@{/categorias}" method="get" class="buscador">
         <i class="fa-solid fa-magnifying-glass" style="color:#4586FF;font-size:1.1rem;"></i>
         <input type="text" name="busqueda" placeholder="Buscar artesanías...">
+=======
+    <title>Nirami</title>
+    <link rel="stylesheet" href="/nirami_proyecto/assets/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Suez+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1 class="logo">NIRAMI</h1>
+    <nav>
+        <a href="/nirami_proyecto/index">Inicio</a>
+        <a href="/nirami_proyecto/categorias">Categorías</a>
+        <a href="/nirami_proyecto/carrito">Compras</a>
+        <a href="/nirami_proyecto/favoritos">Favoritos</a>
+        <a href="/nirami_proyecto/perfil">Perfil</a>
+    </nav>
+    <a href="/nirami_proyecto/login" class="btn-header">Cerrar sesión</a>
+</header>
+
+<main>
+
+    <section class="info">
+        <h2>INFORMACIÓN</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </section>
+    
+    <form action="/nirami_proyecto/categorias" method="get" class="buscador">
+        <input type="text" placeholder="Buscar...">
+>>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
         <button class="btn-secondary">Buscar</button>
     </form>
 
     <section class="seccion">
         <div class="titulo">
+<<<<<<< HEAD
             <h3>Categorías</h3>
             <a th:href="@{/categorias}" class="btn-link" style="color:#4586FF;font-weight:600;text-decoration:none;">Ver todas →</a>
         </div>
@@ -67,11 +98,33 @@
             <div th:if="${recientes == null or #lists.isEmpty(recientes)}" style="color:#999;padding:20px;">
                 Aún no hay productos disponibles.
             </div>
+=======
+            <h3>Recientes</h3>
+            <a href="/nirami_proyecto/categorias" class="btn-link">Ver más...</a>
+        </div>
+        <div class="cards">
+            <a href="/nirami_proyecto/producto" class="card">Producto 1</a>
+            <a href="/nirami_proyecto/producto" class="card">Producto 2</a>
+            <a href="/nirami_proyecto/producto" class="card">Producto 3</a>
+        </div>
+    </section>
+
+    <section class="seccion">
+        <div class="titulo">
+            <h3>Tendencias</h3>
+            <a href="/nirami_proyecto/categorias" class="btn-link">Ver más...</a>
+        </div>
+        <div class="cards">
+            <a href="/nirami_proyecto/producto" class="card">Producto A</a>
+            <a href="/nirami_proyecto/producto" class="card">Producto B</a>
+            <a href="/nirami_proyecto/producto" class="card">Producto C</a>
+>>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
         </div>
     </section>
 </main>
 
 <footer>
+<<<<<<< HEAD
     <div><h4>NIRAMI</h4><p>Artesanías únicas de Colombia</p></div>
     <div>
         <h4>CATEGORÍAS</h4>
@@ -82,3 +135,13 @@
 </footer>
 </body>
 </html>
+=======
+    <div><h4>NIRAMI</h4><p>Artesanías únicas</p></div>
+    <div><h4>CATEGORÍAS</h4><p>Cerámica</p><p>Madera</p><p>Tejidos</p></div>
+    <div><h4>ENLACES DE INTERÉS</h4><p>Sobre nosotros</p><p>Ayuda</p></div>
+    <div><h4>CONTACTO</h4><p>correo@nirami.com</p></div>
+</footer>
+
+</body>
+</html>
+>>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5

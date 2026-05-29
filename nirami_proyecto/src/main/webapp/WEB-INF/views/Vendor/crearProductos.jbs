@@ -1,5 +1,9 @@
+<<<<<<< HEAD
  
  <!DOCTYPE html>
+=======
+<!DOCTYPE html>
+>>>>>>> 9bc7c03d3ca472ea15f2bbb1639b150f685a96b5
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
